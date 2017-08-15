@@ -30,5 +30,6 @@ Or equivalently, incant the following on the server command line:
 # Credits
 
 Adapted from the original script here: https://github.com/masterkorp/openvpn-update-resolv-conf
+
 networksetup invocation borrowed from https://blog.netnerds.net/2011/10/openvpn-update-client-dns-on-mac-os-x-using-from-the-command-line/
 
