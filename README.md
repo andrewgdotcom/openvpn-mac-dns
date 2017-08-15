@@ -27,4 +27,8 @@ Or equivalently, incant the following on the server command line:
 /usr/local/openvpn_as/scripts/confdba -mk "vpn.client.config_text" -v "up /etc/openvpn/update-resolv-conf\ndown /etc/openvpn/update-resolv-conf"
 ```
 
+# Credits
+
+Adapted from the original script here: https://github.com/masterkorp/openvpn-update-resolv-conf
 networksetup invocation borrowed from https://blog.netnerds.net/2011/10/openvpn-update-client-dns-on-mac-os-x-using-from-the-command-line/
+
