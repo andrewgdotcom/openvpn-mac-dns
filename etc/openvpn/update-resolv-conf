@@ -16,16 +16,9 @@
 PATH=$PATH:/usr/sbin/
 NMSRVRS=()
 SRCHS=()
-adapters=()
 
-# Set bash delimeter to be line break (temporarily)
-IFSSAVE=$IFS
-IFS=$'\n'
 # Get adapter list
-for i in `networksetup -listallnetworkservices |grep -v denotes`; do
-        adapters=(${adapters[@]} "$i")
-done
-IFS=$IFSSAVE
+IFS=$'\n' read -d '' -ra adapters <<< $(networksetup -listallnetworkservices |grep -v denotes)
 
 split_into_parts()
 {
