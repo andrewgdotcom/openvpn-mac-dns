@@ -10,6 +10,7 @@ To use, install /etc/openvpn/update-resolv-conf on the client Mac. You can then 
 directives in the openvpn client config file as follows:
 
 ```
+script-security 2
 up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
