@@ -1,13 +1,25 @@
 # openvpn-mac-dns
 Manage DNS settings pushed from OpenVPN
 
-This script is the Mac equivalent of Debian's /etc/openvpn/update-resolv-conf . It is based on the same
-code, but uses `networksetup` instead of `resolvconf` to perform the work.
+This script is the Mac equivalent of Debian's /etc/openvpn/update-resolv-conf .
+It is based on the same code, but uses `networksetup` instead of `resolvconf` to perform the work.
 The name is therefore slightly misleading (it does not touch /etc/resolv.conf),
 but using the same name lets us write OS-agnostic "up" and "down" directives in the client configuration.
 
-To use, install /etc/openvpn/update-resolv-conf on the client Mac. You can then configure "up" and "down"
-directives in the openvpn client config file as follows:
+First, enable DNS push on your OpenVPN or OpenVPN-AS server.
+Many modern clients will understand this natively, and if so you do not need this script.
+To do so, add the following custom configuration to the server (edit to taste):
+
+```
+push "dhcp-option DNS 192.168.1.1"
+push "dhcp-option DOMAIN my.domain"
+```
+
+If the above does not work, you must also copy update-resolv-conf to /etc/openvpn/update-resolv-conf on the client Mac.
+If /etc/openvpn does not exist on the client, create it first using `sudo mkdir -p /etc/openvpn` .
+Make sure that /etc/openvpn/update-resolv-conf is executable.
+
+You should then add "up" and "down" directives in the openvpn client config file as follows:
 
 ```
 script-security 2
@@ -15,8 +27,11 @@ up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
 
-In OpenVPN Access Server, set the following option in the server configuration to automatically
-add the above to the generated client files:
+See https://github.com/andrewgdotcom/openvpn-mac-dns/issues/6 for troubleshooting help.
+
+### OpenVPN-AS auto-generated client configuration
+
+In OpenVPN Access Server, set the following option in the server configuration to automatically add the above snippet to auto-generated client files:
 
 ```
 "vpn.client.config_text": "up /etc/openvpn/update-resolv-conf\ndown /etc/openvpn/update-resolv-conf", 
