@@ -61,7 +61,7 @@ case "$script_type" in
                 if [ "$part1" = "dhcp-option" ] ; then
                         if [ "$part2" = "DNS" ] ; then
                                 NMSRVRS=(${NMSRVRS[@]} $part3)
-                        elif [ "$part2" = "DOMAIN" ] ; then
+                        elif [ "$part2" = "DOMAIN" ] || [ "$part2" = "DOMAIN-SEARCH" ]; then
                                 SRCHS=(${SRCHS[@]} $part3)
                         fi
                 fi
