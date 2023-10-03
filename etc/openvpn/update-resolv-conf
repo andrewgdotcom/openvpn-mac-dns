@@ -10,6 +10,8 @@
 # up /etc/openvpn/update-resolv-conf
 # down /etc/openvpn/update-resolv-conf
 
+echo "*** starting update-resolv-config script ***"
+
 [ "$script_type" ] || exit 0
 [ "$dev" ] || exit 0
 
@@ -72,3 +74,5 @@ case "$script_type" in
         clear_all_dns
         ;;
 esac
+
+echo "*** finished update-resolv-config script ***"
