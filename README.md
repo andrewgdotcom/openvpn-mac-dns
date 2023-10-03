@@ -19,13 +19,16 @@ If the above does not work, you must also copy update-resolv-conf to /etc/openvp
 If /etc/openvpn does not exist on the client, create it first using `sudo mkdir -p /etc/openvpn` .
 Make sure that /etc/openvpn/update-resolv-conf is executable.
 
-You should then add "up" and "down" directives in the openvpn client config file as follows:
+You should then add "up" and "down" directives in each openvpn client configuration file as follows:
 
 ```
 script-security 2
 up /etc/openvpn/update-resolv-conf
 down /etc/openvpn/update-resolv-conf
 ```
+
+Note that you will need to add these directives to every openvpn config file that you use.
+There is no way to set a global default; this is a limitation of openvpn.
 
 See https://github.com/andrewgdotcom/openvpn-mac-dns/issues/6 for troubleshooting help.
 
